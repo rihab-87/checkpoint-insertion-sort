@@ -1,0 +1,61 @@
+FUNCTION read_arr_length() : integer
+VAR
+    n:integer
+BEGIN
+    REPEAT
+        write("enter the length of the array");
+    UNTIL (n>0)
+    RETURN n ;
+END
+
+PROCEDURE read_table(n:integer,VAR T:ARRAY_OF integer)
+VAR
+    i:integer;
+BEGIN
+  FOR i FROM 0 TO n-1 STEP 1  DO
+      write ("enter the", i ,"elements of the  array") ;
+      read(T[i]);
+  END_FOR
+END
+
+PROCEDURE sort_insertion(n:integer,VAR T:ARRAY_OF integer)
+VAR
+   i,j:integer;
+   key:integer;
+BEGIN
+// each time we compare the key(arr[i]) with the elements in 
+// the left (from 0 to i-1 sorted elements )until we find an element smaller than the key , 
+// we put the key juste after this smaller element , all the bigger elements moved  to the right 
+   FOR i FROM 1 TO n-1 STEP 1  DO
+       key=T[i];
+       j:=i-1;
+       WHILE ((T[j]>key)&&(j>=0)) DO
+         T[j+1]:=T[j];
+         j--;  
+       END_WHILE
+       T[j+1]:=key;
+   END_FOR
+END
+PROCEDURE display_sorted_array(n:integer,T:ARRAY_OF integer)
+VAR
+    i:integer
+BEGIN
+   FOR i FROM 0 TO n-1 STEP 1  DO
+     write(T[i]);
+   END_FOR
+END
+
+ALGORITHM insertion_sort
+VAR
+   arr : ARRAY_OF integer[];
+   n:integer;
+BEGIN
+// read the length of the array 
+ n:= read_arr_length();
+  //read an array
+ read_table(n,VAR arr);
+  // insertion sort of the array 
+  sort_insertion(n,VAR arr)
+  // display the sorted array  
+  display_sorted_array(n,arr);
+END
