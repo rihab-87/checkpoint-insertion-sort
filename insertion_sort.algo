@@ -4,6 +4,7 @@ VAR
 BEGIN
     REPEAT
         write("enter the length of the array");
+        read(n);
     UNTIL (n>0)
     RETURN n ;
 END
@@ -29,7 +30,7 @@ BEGIN
    FOR i FROM 1 TO n-1 STEP 1  DO
        key=T[i];
        j:=i-1;
-       WHILE ((T[j]>key)&&(j>=0)) DO
+       WHILE ((T[j]>key) AND (j>=0)) DO
          T[j+1]:=T[j];
          j--;  
        END_WHILE
